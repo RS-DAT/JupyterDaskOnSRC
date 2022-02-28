@@ -1,0 +1,6 @@
+---
+# Mount point for home directories
+home_location: /home
+# Directory where /home (`home_location`) should point to
+# It is directory where extra disk is mounted at and where existing home dirs should be copied to
+alt_home_location: /data/volume_2

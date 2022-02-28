@@ -1,0 +1,12 @@
+[Unit]
+Description=Jupyterhub
+After=syslog.target network.target
+
+[Service]
+User=root
+Environment="PATH={{ conda_environment_bin }}:{{ conda_root }}/condabin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+ExecStart={{ conda_environment_bin }}/jupyterhub --upgrade-db -f /etc/jupyterhub/jupyterhub_config.py
+ExecReload=/bin/kill -s HUP $MAINPID
+
+[Install]
+WantedBy=multi-user.target

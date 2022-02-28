@@ -1,0 +1,24 @@
+- name: Put /home in fstab
+  mount:
+    path: '{{ home_location }}'
+    src: '{{ alt_home_location }}'
+    opts: bind
+    fstype: none
+    state: present
+  register: new_home_in_fstab
+
+- name: Move home
+  block:
+    - name: Copy /home to alt location
+      synchronize:
+        src: '{{ home_location }}/'
+        dest: '{{ alt_home_location }}/'
+    # TODO clean /home before mounting over it?
+    - name: Bind mount alt location on /home
+      mount:
+        path: '{{ home_location }}'
+        src: '{{ alt_home_location }}'
+        state: mounted
+        opts: bind
+        fstype: none
+  when: new_home_in_fstab.changed # /data/volume_3 is not mounted as /home

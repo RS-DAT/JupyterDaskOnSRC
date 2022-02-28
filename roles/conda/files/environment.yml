@@ -1,0 +1,15 @@
+name: jupyter_dask
+channels:
+  - conda-forge
+dependencies:
+  - python=3.9
+  - dask[complete]
+  - jupyterhub
+  - jupyterhub-idle-culler
+  - jupyterhub-systemdspawner
+  - jupyterlab
+  - dask-labextension
+  - jupyterlab-geojson
+  - jupyter_bokeh
+  - jupyterlab-git
+  - pip

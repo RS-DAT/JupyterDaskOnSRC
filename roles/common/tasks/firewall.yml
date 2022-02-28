@@ -1,0 +1,22 @@
+---
+- name: ufw firewall command must be present
+  apt:
+    name: ufw
+    state: present
+- name: Allow ssh from anywhere
+  ufw:
+    rule: limit
+    name: OpenSSH
+- name: Allow http + https traffic
+  ufw:
+    rule: allow
+    port: '{{ item }}'
+    proto: tcp
+  loop:
+    - 80
+    - 443
+- name: Deny all other incoming traffic
+  ufw:
+    state: enabled
+    policy: deny
+    direction: incoming

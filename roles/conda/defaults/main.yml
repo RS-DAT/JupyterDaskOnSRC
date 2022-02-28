@@ -1,0 +1,7 @@
+---
+# Location where conda installer is downloaded to
+conda_installer_root: /opt
+# Location where conda will be installed
+conda_root: /opt/conda
+# Name of conda environment to use
+conda_environment: jupyterdask

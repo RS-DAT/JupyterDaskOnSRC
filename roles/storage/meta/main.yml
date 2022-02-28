@@ -1,0 +1,12 @@
+galaxy_info:
+  author: Stefan Verhoeven
+  description: Mounts SRC storage items - simplified and adapted to RS-DAT
+  company: Netherlands eScience Center
+  license: Apache-2.0
+  min_ansible_version: 2.9
+  platforms:
+    - name: Ubuntu
+      versions:
+        - focal
+  galaxy_tags: []
+dependencies: []

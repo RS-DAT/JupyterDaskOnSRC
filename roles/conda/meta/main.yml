@@ -1,0 +1,12 @@
+galaxy_info:
+  author: Stefan Verhoeven and Peter Kalverla
+  description: Conda installation and environment - adapted to RS-DAT
+  company: Netherlands eScience Center
+  license: Apache-2.0
+  min_ansible_version: 2.4
+  platforms:
+    - name: Ubuntu
+      versions:
+        - focal
+  galaxy_tags: []
+dependencies: []

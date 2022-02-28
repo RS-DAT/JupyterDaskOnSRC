@@ -1,0 +1,57 @@
+---
+- name: Allow Jupyter server internal traffic
+  ufw:
+    rule: allow
+    port: '8081'
+    proto: tcp
+    from_ip: 172.17.0.0/12
+- name: JupyterHub systemd file
+  template:
+    src: jupyterhub.systemd.j2
+    dest: /etc/systemd/system/jupyterhub.service
+    mode: '0644'
+- name: jupyterhub service enabled
+  systemd:
+    name: jupyterhub
+    state: reloaded
+    daemon_reload: yes
+    enabled: yes
+- name: jupyter posix group
+  group:
+    name: jupyter
+    state: present
+- name: Create /etc/jupyterhub directory
+  file:
+    path: /etc/jupyterhub
+    state: directory
+    mode: '0755'
+- name: jupyterhub_config
+  template:
+    src: jupyterhub_config.py.j2
+    dest: /etc/jupyterhub/jupyterhub_config.py
+    mode: '0644'
+  notify:
+    - restart jupyterhub
+- name: Remove default conda python kernel
+  command: /mnt/apps/conda/envs/ewatercycle/bin/jupyter kernelspec remove -f conda
+  args:
+    removes: /usr/local/share/jupyter/kernels/conda
+  notify:
+    - restart jupyterhub
+- name: Create nginx location block
+  copy:
+    dest: /etc/nginx/app-location-conf.d/jupyterhub.conf
+    mode: 0644
+    content: |
+      location /jupyter {
+          proxy_pass http://127.0.0.1:8000;
+          proxy_redirect http://localhost:8000/ $scheme://$host/;
+          proxy_set_header X-Real-IP $remote_addr;
+          proxy_set_header Host $host;
+          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+          proxy_set_header Upgrade $http_upgrade;
+          proxy_set_header Connection $connection_upgrade;
+          client_max_body_size 10G;
+      }
+  notify:
+    - restart nginx

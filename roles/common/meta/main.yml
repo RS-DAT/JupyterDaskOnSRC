@@ -1,0 +1,12 @@
+galaxy_info:
+  author: Stefan Verhoeven & Berend Weel
+  description: eWaterCycle lab common tasks
+  company: Netherlands eScience Center
+  license: Apache
+  min_ansible_version: 2.4
+  platforms:
+    - name: Ubuntu
+      versions:
+        - all
+  galaxy_tags: []
+dependencies: []

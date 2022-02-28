@@ -1,0 +1,39 @@
+---
+- name: Download miniforge installer
+  get_url:
+    url: https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-Linux-x86_64.sh
+    dest: '{{ conda_installer_root }}/'
+- name: Install conda
+  command: /bin/bash {{ conda_installer_root }}/Mambaforge-Linux-x86_64.sh -f -b -p {{ conda_root }}
+  args:
+    creates: '{{ conda_root }}'
+- name: Remove installer
+  file:
+    path: '{{ conda_installer_root }}/Mambaforge-Linux-x86_64.sh'
+    state: absent
+- name: Initialize conda/mamba system wide
+  file:
+    src: '{{ conda_root }}/etc/profile.d/{{ item }}'
+    dest: /etc/profile.d/{{ item }}
+    state: link
+  loop:
+    - conda.sh
+    - mamba.sh
+- name: Disable loading base environment
+  command: '{{ conda_root }}/condabin/conda config --set auto_activate_base False --system'
+- name: Stage conda env file
+  copy:
+    src: environment.yml
+    dest: '{{ conda_root }}/environment.yml'
+    mode: '0644'
+- name: Install/update conda environment
+  command: '{{ conda_root }}/condabin/mamba env update --name {{ conda_environment }} --file {{ conda_root }}/environment.yml'  # noqa no-changed-when
+- name: Activate conda environment during login for all posix_users
+  lineinfile:
+    path: /etc/profile.d/conda.sh
+    line: conda activate {{ conda_environment }}
+    regexp: '^conda activate {{ conda_environment }}'
+- name: conda clean
+  command: '{{ conda_root }}/condabin/mamba clean -a -y'  # noqa no-changed-when
+
+

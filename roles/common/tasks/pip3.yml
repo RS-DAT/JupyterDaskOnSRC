@@ -1,0 +1,16 @@
+---
+- name: Pip deps
+  apt:
+    name: '{{ item }}'
+    state: present
+  loop:
+    - python3-distutils
+    - python3-setuptools
+- name: Download pip installer
+  get_url:
+    url: https://bootstrap.pypa.io/get-pip.py
+    dest: /opt/get-pip.py
+- name: Install latest pip
+  command: python3 /opt/get-pip.py
+  args:
+    creates: /usr/local/bin/pip3
