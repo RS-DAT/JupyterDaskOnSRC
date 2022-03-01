@@ -7,8 +7,38 @@
     state: present
   register: new_home_in_fstab
 
+- name: Remove symlinks to /data from skeleton
+  file:
+    path: /etc/skel/data
+    state: absent
+- name: Remove symlinks to /scratch from skeleton
+  file:
+    path: /etc/skel/scratch
+    state: absent
+
 - name: Move home
   block:
+    - name: List my users
+      shell: set -o pipefail && ls -1 | grep -v lost+found
+      args:
+        chdir: '{{ home_location }}'
+        executable: /bin/bash
+      register: myusers
+      changed_when: False
+    - name: Remove symlinks to /data
+      file:
+        path: '{{ home_location }}/{{ item }}/data'
+        state: absent
+      loop: "{{ myusers.stdout_lines }}"
+      loop_control:
+        label: "{{ item }}"
+    - name: Remove symlinks to /scratch
+      file:
+        path: '{{ home_location }}/{{ item }}/scratch'
+        state: absent
+      loop: "{{ myusers.stdout_lines }}"
+      loop_control:
+        label: "{{ item }}"
     - name: Copy /home to alt location
       synchronize:
         src: '{{ home_location }}/'
