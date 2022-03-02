@@ -1,0 +1,6 @@
+# {{ ansible_managed }}
+
+distributed:
+  dashboard:
+    link: "{{ jupyter_base_url }}/user/{JUPYTERHUB_USER}/proxy/{{ dask_dashboard_port }}/status"
+

@@ -1,0 +1,11 @@
+---
+- name: restart dask worker
+  systemd:
+    name: dask_worker
+    state: restarted
+    daemon_reload: yes
+- name: restart dask scheduler
+  systemd:
+    name: dask_scheduler
+    state: restarted
+    daemon_reload: yes

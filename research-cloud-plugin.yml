@@ -43,6 +43,10 @@
       include_role:
         name: jupyter
 
+    - name: Set up Dask cluster
+      include_role:
+        name: dask
+
     - name: Clean apt cache
       apt:
         autoclean: yes
