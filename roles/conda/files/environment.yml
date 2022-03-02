@@ -3,6 +3,7 @@ channels:
   - conda-forge
 dependencies:
   - python=3.9
+  - asyncssh
   - dask[complete]
   - jupyterhub
   - jupyterhub-idle-culler
@@ -10,6 +11,6 @@ dependencies:
   - jupyterlab
   - dask-labextension
   - jupyterlab-geojson
-  - jupyter_bokeh
   - jupyterlab-git
+  - jupyter-server-proxy
   - pip
