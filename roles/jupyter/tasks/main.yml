@@ -43,7 +43,7 @@
     dest: /etc/nginx/app-location-conf.d/jupyterhub.conf
     mode: 0644
     content: |
-      location /jupyter {
+      location {{ jupyter_base_url }} {
           proxy_pass http://127.0.0.1:8000;
           proxy_redirect http://localhost:8000/ $scheme://$host/;
           proxy_set_header X-Real-IP $remote_addr;
