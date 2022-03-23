@@ -1,0 +1,32 @@
+- name: Update inventory with worker IPs
+  hosts: localhost
+  gather_facts: false
+  vars: {}
+  tasks:
+
+    - name: Wait for system to become reachable
+      wait_for_connection:
+        timeout: 300
+
+    - name: Add workers to inventory
+      add_host:
+        name: '{{ item }}'
+        groups: workers
+        ansible_user: ubuntu
+        ansible_connection: ssh
+        ansible_ssh_private_key_file: /root/.ssh/id_rsa
+        ansible_become: yes
+      loop: '{{ worker_ip_addresses }}'
+
+    - name: Gather facts for first time
+      setup:
+
+- name: test
+  hosts:
+    - all
+  tasks:
+
+    - name: print again
+      debug:
+        msg: Hello {{ groups['workers'] }}
+      when: inventory_hostname in groups['workers']
