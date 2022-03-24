@@ -1,8 +1,4 @@
 ---
-- name: Wait for system to become reachable
-  wait_for_connection:
-    timeout: 300
-
 - name: Scan for SSH host keys.
   delegate_to: localhost
   shell:
@@ -30,8 +26,8 @@
   copy:
     src: "~/.ssh/id_rsa_workers"
     dest: "~/.ssh/id_rsa"
-    mode: 600
-    user: root
+    mode: "u=rw"
+    owner: root
 
 - name: Set authorized key for workers
   delegate_to: localhost
