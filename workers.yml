@@ -1,0 +1,49 @@
+---
+- name: Wait for system to become reachable
+  wait_for_connection:
+    timeout: 300
+
+- name: Scan for SSH host keys.
+  delegate_to: localhost
+  shell:
+    cmd: ssh-keyscan {{ inventory_hostname }}
+  register: ssh_scan
+
+- name: Write the new host keys to known hosts
+  delegate_to: localhost
+  known_hosts:
+    name: "{{ inventory_hostname }}"
+    key: "{{ item }}"
+  with_items: "{{ ssh_scan.stdout_lines }}"
+
+- name: Generate workers' SSH key
+  delegate_to: localhost
+  run_once: true
+  openssh_keypair:
+    path: "~/.ssh/id_rsa_workers"
+    type: rsa
+    size: 4096
+    state: present
+    force: no
+
+- name: Copy SSH private key to workers
+  copy:
+    src: "~/.ssh/id_rsa_workers"
+    dest: "~/.ssh/id_rsa"
+    mode: 600
+    user: root
+
+- name: Set authorized key for workers
+  delegate_to: localhost
+  run_once: true
+  authorized_key:
+    user: ubuntu
+    state: present
+    key: "{{ lookup('file', '~/.ssh/id_rsa_workers.pub') }}"
+
+- name: debug
+  debug:
+    msg: "Hello from {{ inventory_hostname }} "
+
+
+

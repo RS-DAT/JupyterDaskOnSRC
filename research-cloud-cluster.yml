@@ -8,25 +8,20 @@
       wait_for_connection:
         timeout: 300
 
-    - name: Add workers to inventory
+    - name: Add worker {{ worker_idx }} to inventory
       add_host:
-        name: '{{ item }}'
+        name: "{{ worker_ip_address }}"
         groups: workers
         ansible_user: ubuntu
         ansible_connection: ssh
-        ansible_ssh_private_key_file: /root/.ssh/id_rsa
+        ansible_ssh_private_key_file: ~/.ssh/id_rsa
         ansible_become: yes
-      loop: '{{ worker_ip_addresses }}'
 
-    - name: Gather facts for first time
-      setup:
-
-- name: test
-  hosts:
-    - all
+- name: Setup connection to workers
+  hosts: workers
+  gather_facts: false
+  vars: {}
   tasks:
 
-    - name: print again
-      debug:
-        msg: Hello {{ groups['workers'] }}
-      when: inventory_hostname in groups['workers']
+    - name: Configure workers
+      include: workers.yml
