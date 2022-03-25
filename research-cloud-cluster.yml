@@ -18,12 +18,53 @@
         ansible_become: yes
       loop: '{{ worker_ip_addresses }}'
 
+    - name: Alias name for jumphost
+      add_host:
+        name: jumphost
+        hostname: localhost
 
-- name: Set up connection between jumphost and workers
-  hosts: workers
-  gather_facts: false
+    - name: Scan for worker keys.
+      shell:
+        cmd: ssh-keyscan {{ item }}
+      register: ssh_scan
+      loop: '{{ worker_ip_addresses }}'
+
+    - name: Write the worker keys to known hosts
+      known_hosts:
+        name: "{{ item.0.item }}"
+        key: "{{ item.1 }}"
+      with_subelements:
+        - "{{ ssh_scan.results }}"
+        - stdout_lines
+
+- name: Install and configure JupyterDask
+  hosts: all
   vars: {}
   tasks:
 
-    - name: Configure workers
-      include: workers.yml
+    - name: Common stuff
+      include_role:
+        name: common
+
+    - name: Install gcc, git, ntp
+      apt:
+        update_cache: yes
+        pkg:
+          - git
+          - gcc
+          - g++
+          - make
+          - ntp
+          - tmux
+          - ksh
+          - acl
+          - net-tools
+          - jq
+
+    - name: Conda environment
+      include_role:
+        name: conda
+
+    - name: Set up Dask cluster
+      include_role:
+        name: dask
