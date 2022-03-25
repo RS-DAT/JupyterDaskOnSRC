@@ -19,7 +19,7 @@
   ufw:
     rule: allow
     src: "{{ item }}"
-  loop: trusted_networks
+  loop: "{{ trusted_networks }}"
 - name: Deny all other incoming traffic
   ufw:
     state: enabled
