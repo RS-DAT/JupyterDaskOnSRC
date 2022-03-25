@@ -9,25 +9,31 @@
     src: dask_config.yaml.j2
     dest: /etc/dask/dask_config.yaml
     mode: '0644'
-- name: Dask scheduler systemd file
-  template:
-    src: dask-scheduler.systemd.j2
-    dest: /etc/systemd/system/dask-scheduler.service
-    mode: '0644'
-- name: Dask scheduler service enabled
-  systemd:
-    name: dask-scheduler
-    state: reloaded
-    daemon_reload: yes
-    enabled: yes
-- name: Dask worker systemd file
-  template:
-    src: dask-worker.systemd.j2
-    dest: /etc/systemd/system/dask-worker.service
-    mode: '0644'
-- name: Dask worker service enabled
-  systemd:
-    name: dask-worker
-    state: reloaded
-    daemon_reload: yes
-    enabled: yes
+- name: Dask scheduler
+  block:
+    - name: Add systemd file
+      template:
+        src: dask-scheduler.systemd.j2
+        dest: /etc/systemd/system/dask-scheduler.service
+        mode: '0644'
+    - name: Service enabled
+      systemd:
+        name: dask-scheduler
+        state: reloaded
+        daemon_reload: yes
+        enabled: yes
+  when: inventory_hostname == "jumphost"
+- name: Dask workers
+  block:
+    - name: Add systemd file
+      template:
+        src: dask-worker.systemd.j2
+        dest: /etc/systemd/system/dask-worker.service
+        mode: '0644'
+    - name: Service enabled
+      systemd:
+        name: dask-worker
+        state: reloaded
+        daemon_reload: yes
+        enabled: yes
+  when: inventory_hostname in groups['workers']
