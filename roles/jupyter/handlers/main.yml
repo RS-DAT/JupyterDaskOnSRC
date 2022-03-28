@@ -1,7 +1,7 @@
 ---
-- name: restart jupyterhub
+- name: restart jupyter
   systemd:
-    name: jupyterhub
+    name: jupyter
     state: restarted
     daemon_reload: yes
 - name: restart nginx
