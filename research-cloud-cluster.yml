@@ -42,9 +42,9 @@
   vars: {}
   tasks:
 
-#    - name: Common stuff
-#      include_role:
-#        name: common
+    - name: Common stuff
+      include_role:
+        name: common
 
     - name: Install gcc, git, ntp
       apt:

@@ -1,9 +1,5 @@
 ---
-- name: Hostname
-  include: hostname.yml
+#- name: Hostname
+#  include: hostname.yml
 - name: Firewall
   include: firewall.yml
-- name: ppa
-  include: ppa.yml
-- name: pip3
-  include: pip3.yml

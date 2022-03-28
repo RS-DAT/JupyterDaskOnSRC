@@ -15,11 +15,11 @@
   loop:
     - 80
     - 443
-- name: Allow all traffic on private network
+- name: Allow all access from RFC1918 networks
   ufw:
     rule: allow
     src: "{{ item }}"
-  loop: "{{ trusted_networks }}"
+  with_items: "{{ trusted_networks }}"
 - name: Deny all other incoming traffic
   ufw:
     state: enabled
