@@ -5,8 +5,6 @@ conda_root: /opt/conda
 conda_environment: jupyterdask
 # Path to conda environments bin directory
 conda_environment_bin: '{{ conda_root }}/envs/{{ conda_environment }}/bin'
-# Jupyter base URL
-jupyter_base_url: /jupyter
 # Port on which dask scheduler is running
 dask_scheduler_port: 3389
 # Port on which dask dashboard is running
