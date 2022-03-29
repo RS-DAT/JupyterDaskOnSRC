@@ -1,4 +1,0 @@
----
-# tasks file for storage
-- name: Move /home from root disk to other disk
-  include_tasks: home.yml
