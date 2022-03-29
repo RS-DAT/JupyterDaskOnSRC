@@ -1,4 +1,4 @@
-- name: Add workers to inventory
+- name: Enable ansible to configure workers
   hosts: localhost
   gather_facts: false
   vars: {}
