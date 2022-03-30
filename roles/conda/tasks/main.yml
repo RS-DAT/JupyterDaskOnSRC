@@ -21,11 +21,10 @@
     - mamba.sh
 - name: Disable loading base environment
   command: '{{ conda_root }}/condabin/conda config --set auto_activate_base False --system'
-- name: Stage conda env file
-  copy:
-    src: environment.yml
+- name: Get conda environment file
+  get_url:
+    url: {{ environment_url }}
     dest: '{{ conda_root }}/environment.yml'
-    mode: '0644'
 - name: Install/update conda environment
   command: '{{ conda_root }}/condabin/mamba env update --name {{ conda_environment }} --file {{ conda_root }}/environment.yml'  # noqa no-changed-when
 - name: Activate conda environment during login for all posix_users
