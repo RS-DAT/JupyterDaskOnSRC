@@ -13,9 +13,3 @@ dask_dashboard_port: 8787
 dask_worker_port: 5986
 # Workers' scratch directory
 dask_worker_dir: "/scratch"
-# Workers' memory limit
-dask_worker_memory: "8GiB"
-# Number of worker processes
-dask_nprocs: 1
-# Number of threads per worker
-dask_nthreads: 1

@@ -1,6 +1,6 @@
 galaxy_info:
   author: Francesco Nattino
-  description: Setup and run a Dask cluster
+  description: JupyterDask SRC dask tasks
   company: Netherlands eScience Center
   license: Apache-2.0
   min_ansible_version: 2.4

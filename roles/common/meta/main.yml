@@ -1,8 +1,8 @@
 galaxy_info:
-  author: Stefan Verhoeven & Berend Weel
-  description: eWaterCycle lab common tasks
+  author: Stefan Verhoeven, Berend Weel and Francesco Nattino
+  description: JupyterDask SRC common tasks
   company: Netherlands eScience Center
-  license: Apache
+  license: Apache-2.0
   min_ansible_version: 2.4
   platforms:
     - name: Ubuntu

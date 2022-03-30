@@ -15,7 +15,7 @@
   loop:
     - 80
     - 443
-- name: Allow all access from RFC1918 networks
+- name: Allow all access from trusted networks
   ufw:
     rule: allow
     src: "{{ item }}"

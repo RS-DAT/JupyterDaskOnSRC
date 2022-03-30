@@ -1,7 +1,7 @@
 Dask
 ====
 
-Setup a [Dask](https://dask.org) cluster.
+[Dask](https://dask.org) role for the JupyterDask deployment on SURF Research Cloud. Adapted from [Emma](https://github.com/nlesc-sherlock/emma).
 
 Requirements
 ------------
@@ -18,20 +18,14 @@ conda_root: /opt/conda
 conda_environment: jupyterdask
 # Path to conda environments bin directory
 conda_environment_bin: '{{ conda_root }}/envs/{{ conda_environment }}/bin'
-# Jupyter base URL
-jupyter_base_url: /jupyter
 # Port on which dask scheduler is running
-dask_scheduler_port: 8786
+dask_scheduler_port: 3389
 # Port on which dask dashboard is running
 dask_dashboard_port: 8787
+# Port on which dask workers are running
+dask_worker_port: 5986
 # Workers' scratch directory
 dask_worker_dir: "/scratch"
-# Workers' memory limit
-dask_worker_memory: "8GiB"
-# Number of worker processes
-dask_nprocs: 1
-# Number of threads per worker
-dask_nthreads: 1
 ```
 
 Dependencies

@@ -1,7 +1,7 @@
 Jupyter
 =======
 
-Jupyter environment as used in eWaterCycle project. Adapted and simplified for RS-DAT.
+[JupyterHub](https://jupyter.org/hub) role for the JupyterDask deployment on SURF Research Cloud. Adapted from the [eWaterCycle lab infrastructure](https://github.com/eWaterCycle/infra).
 
 Requirements
 ------------
@@ -26,8 +26,6 @@ conda_environment: jupyterdask
 conda_environment_bin: '{{ conda_root }}/envs/{{ conda_environment }}/bin'
 # List of posix users who should have JupyterHub admin rights
 jupyterhub_admins: []
-# Jupyter base URL
-jupyter_base_url: /jupyter
 ```
 
 Dependencies

@@ -1,7 +1,7 @@
 Conda 
 =====
 
-Install [conda](https://docs.conda.io) and configure the environment. Adapted and simplified from eWaterCycle to RS-DAT.
+[Conda](https://docs.conda.io) role for the JupyterDask deployment on SURF Research Cloud. Adapted from the [eWaterCycle lab infrastructure](https://github.com/eWaterCycle/infra).
 
 Requirements
 ------------

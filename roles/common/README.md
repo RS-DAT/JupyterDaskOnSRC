@@ -1,7 +1,7 @@
 Common
 ======
 
-Common tasks for the eWaterCycle lab infrastructure. Adapted and simplified for RS-DAT.
+Common tasks for the JupyterDask deployment on SURF Research Cloud. Adapted from the [eWaterCycle lab infrastructure](https://github.com/eWaterCycle/infra).
 
 Requirements
 ------------
@@ -11,7 +11,13 @@ Any pre-requisites that may not be covered by Ansible itself or the role should 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+```yaml
+# RFC1918 networks
+trusted_networks:
+  - 10.0.0.0/8
+  - 172.16.0.0/12
+  - 192.168.0.0/16
+```
 
 Dependencies
 ------------
