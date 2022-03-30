@@ -38,3 +38,8 @@ When setting up the **application offer**:
 * Add the following "Application offer parameters":
   * Choose "environment_url" from the menu, then set "Source type" as "Fixed", "Default value" as `https://raw.githubusercontent.com/RS-DAT/JupyterDaskOnSRC/main/environment.yml`, "Data type" as "string", and tick "Overwritable";
   * Choose "num_nodes" from the menu, then set "Source type" as "Fixed", "Data type" as "string", and tick "Overwritable" and "Required".
+
+
+## Credits
+
+Most of the playbooks in this repository have been inspired/adapted from the ones in the [eWaterCycle infrastructure](https://github.com/eWaterCycle/infra) and the [Emma](https://github.com/nlesc-sherlock/emma) project. 
