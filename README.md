@@ -1,10 +1,14 @@
 # JupyterDask on SRC
 
-Deploy a Dask cluster and JupyterHub on SURF Research Cloud.
+Deploy Dask on a cluster of virtual machines (VMs) on SURF Research Cloud. Access the cluster via JupyterHub, deployed on the head node. 
 
 ## Register Application
 
 A member of the CO [with "developer" privileges](https://servicedesk.surfsara.nl/wiki/display/WIKI/Appoint+a+CO-member+a+developer) can register the current application on SURF Research Cloud following [these instructions](https://servicedesk.surfsara.nl/wiki/display/WIKI/Create+your+own+applications).
+
+The following steps create a catalog item with two paraters:
+* the number of worker nodes in the cluster of VMs;
+* (optional) the URL to a conda environment file - it should be based on the [`environmnent.yml` file provided in this repository](./environment.yml).
 
 When setting up the **plugin**:
 * Set "Script type" to "Ansible PlayBook";
@@ -22,11 +26,11 @@ When setting up the **application**:
 * Add the following "Application parameters":
   * Choose "environment_url" from the menu, then set "Source type" as "Fixed", "Data type" as "string", and tick "Overwritable";
   * Choose "co_passwordless_sudo" from the menu, then set "Source type" as "Fixed", "Default value" as `true`, "Data type" as "string", and tick "Overwritable";
-  * Choose "num_nodes" from the menu, then set "Source type" as "Fixed", "Data type" as "string", and tick "Overwritable" and "Required";
+  * Choose "num_nodes" from the menu, then set "Source type" as "Fixed", "Data type" as "string", and tick "Overwritable" and "Required".
 
 When setting up the **application offer**:
 * Set "Application" as the application just created;
 * Set "Subscription" as "SURF HPC Cloud cluster";
 * Add the following "Application offer parameters":
   * Choose "environment_url" from the menu, then set "Source type" as "Fixed", "Default value" as `https://raw.githubusercontent.com/RS-DAT/JupyterDaskOnSRC/main/environment.yml`, "Data type" as "string", and tick "Overwritable";
-  * Choose "num_nodes" from the menu, then set "Source type" as "Fixed", "Data type" as "string", and tick "Overwritable" and "Required";
+  * Choose "num_nodes" from the menu, then set "Source type" as "Fixed", "Data type" as "string", and tick "Overwritable" and "Required".
