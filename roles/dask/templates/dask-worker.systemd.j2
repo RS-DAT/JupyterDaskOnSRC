@@ -8,7 +8,7 @@ After=syslog.target network.target
 [Service]
 User=root
 Environment="PATH={{ conda_environment_bin }}:{{ conda_root }}/condabin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
-ExecStart={{ conda_environment_bin }}/dask-worker tcp://{{ hostvars['jumphost']['ansible_default_ipv4']['address'] }}:{{ dask_scheduler_port }} --worker-port {{ dask_worker_port }} --nworkers {{ dask_nprocs }} --nthreads {{ dask_nthreads }}  --memory-limit {{ dask_worker_memory }}  --local-directory {{ dask_worker_dir }}
+ExecStart={{ conda_environment_bin }}/dask-worker tcp://{{ hostvars['jumphost']['ansible_default_ipv4']['address'] }}:{{ dask_scheduler_port }} --worker-port {{ dask_worker_port }} --local-directory {{ dask_worker_dir }}
 ExecReload=/bin/kill -s HUP $MAINPID
 
 [Install]
