@@ -5,6 +5,7 @@ dependencies:
   - python=3.9
   - asyncssh
   - dask[complete]
+  - python-graphviz
   - jupyterhub
   - jupyterhub-idle-culler
   - jupyterhub-systemdspawner

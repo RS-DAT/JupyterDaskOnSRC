@@ -22,7 +22,7 @@ c.Authenticator.admin_users = set([ {% for user in jupyterhub_admins %}
 c.JupyterHub.spawner_class = 'systemdspawner.SystemdSpawner'
 c.SystemdSpawner.default_shell = '/bin/bash'
 
-c.Spawner.default_url = '/lab'
+c.Spawner.default_url = '/lab?reset'
 c.Spawner.environment = { {% for key, value in jupyterhub_spawner_environment.items() %}
     '{{ key }}': '{{ value }}'{% if not loop.last %},{% endif %}
 {% endfor %} }
@@ -35,6 +35,3 @@ c.JupyterHub.cleanup_proxy = False
 
 # Remove system python from kernel list
 # c.Spawner.args = ["--KernelSpecManager.ensure_native_kernel=False"]
-
-# Host from /jupyter
-c.JupyterHub.base_url = '{{ jupyter_base_url }}'

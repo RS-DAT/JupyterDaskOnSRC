@@ -1,9 +1,0 @@
----
-- name: Install requirements for adding ppas
-  apt:
-    update_cache: true
-    name:
-      - gnupg
-      - gnupg-agent
-      - dirmngr
-      - apt-transport-https

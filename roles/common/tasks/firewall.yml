@@ -10,11 +10,16 @@
 - name: Allow http + https traffic
   ufw:
     rule: allow
-    port: '{{ item }}'
+    port: "{{ item }}"
     proto: tcp
   loop:
     - 80
     - 443
+- name: Allow all access from RFC1918 networks
+  ufw:
+    rule: allow
+    src: "{{ item }}"
+  with_items: "{{ trusted_networks }}"
 - name: Deny all other incoming traffic
   ufw:
     state: enabled
