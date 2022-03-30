@@ -42,4 +42,4 @@ When setting up the **application offer**:
 
 ## Credits
 
-Most of the playbooks in this repository have been inspired/adapted from the ones in the [eWaterCycle infrastructure](https://github.com/eWaterCycle/infra) and the [Emma](https://github.com/nlesc-sherlock/emma) project. 
+Most of the playbooks in this repository have been taken, inspired or adapted from the ones in the [eWaterCycle infrastructure](https://github.com/eWaterCycle/infra) and the [Emma](https://github.com/nlesc-sherlock/emma) projects. 
