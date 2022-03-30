@@ -1,6 +1,10 @@
 # JupyterDask on SRC
 
-Deploy Dask on a cluster of virtual machines (VMs) on SURF Research Cloud. Access the cluster via JupyterHub, deployed on the head node. 
+Deploy Dask on a cluster of virtual machines (VMs) on SURF Research Cloud. Access the cluster via JupyterHub, deployed on the head node.
+
+TODO: current limitations:
+  * the SURF HCP cloud cluster subscription is only available in the development Research Cloud environment;
+  * the JupyterHub deployment is currently disabled due to: https://github.com/RS-DAT/JupyterDaskOnSRC/issues/1
 
 ## Register Application
 
