@@ -69,7 +69,7 @@
       include_role:
         name: dask
 
-#    - name: Set up Jupyter server
-#      include_role:
-#        name: jupyter
-#      when: inventory_hostname == "jumphost"
+    - name: Set up Jupyter server
+      include_role:
+        name: jupyter
+      when: inventory_hostname == "jumphost"

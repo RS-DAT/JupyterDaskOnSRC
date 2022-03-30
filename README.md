@@ -4,7 +4,7 @@ Deploy Dask on a cluster of virtual machines (VMs) on SURF Research Cloud. Acces
 
 TODO: current limitations:
   * the SURF HCP cloud cluster subscription is only available in the development Research Cloud environment;
-  * the JupyterHub deployment is currently disabled due to: https://github.com/RS-DAT/JupyterDaskOnSRC/issues/1
+  * the reverse proxy for JupyterHub is currently disabled due to: https://github.com/RS-DAT/JupyterDaskOnSRC/issues/1 - use SSH port forwarding to access JupyterHub.
 
 ## Register Application
 
