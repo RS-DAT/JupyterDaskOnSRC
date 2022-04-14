@@ -4,7 +4,6 @@ Deploy Dask on a cluster of virtual machines (VMs) on SURF Research Cloud. Acces
 
 TODO: current limitations:
   * the SURF HCP cloud cluster subscription is only available in the development Research Cloud environment;
-  * the reverse proxy for JupyterHub is currently disabled due to: https://github.com/RS-DAT/JupyterDaskOnSRC/issues/1 - use SSH port forwarding to access JupyterHub.
 
 ## Register Application
 
@@ -26,7 +25,7 @@ When setting up the **plugin**:
 
 When setting up the **application**:
 * Set "Access format" as `https://==REVERSE_PROXY==`;
-* Select the following application plugins (in this order): "RSC-OS", "RSC-CO", "RSC-External plugin", and the plugin just created; (TODO: add NGINX plugin when fixed)
+* Select the following application plugins (in this order): "RSC-OS", "RSC-CO", "RSC-Nginx", "RSC-External plugin", and the plugin just created;
 * Add the following "Application parameters":
   * Choose "environment_url" from the menu, then set "Source type" as "Fixed", "Data type" as "string", and tick "Overwritable";
   * Choose "co_passwordless_sudo" from the menu, then set "Source type" as "Fixed", "Default value" as `true`, "Data type" as "string", and tick "Overwritable";
