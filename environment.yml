@@ -16,3 +16,5 @@ dependencies:
   - jupyterlab-git
   - jupyter-server-proxy
   - pip
+  - pip:
+      - dcachefs

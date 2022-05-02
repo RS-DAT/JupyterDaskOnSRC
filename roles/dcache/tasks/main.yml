@@ -1,0 +1,15 @@
+---
+- name: Create /etc/fsspec directory
+  file:
+    path: /etc/fsspec
+    state: directory
+    mode: '0755'
+- name: Create FSSPEC config file
+  copy:
+    dest: /etc/fsspec/dcache.json
+    content: '{{ dcache_config | to_json }}'
+- name: Export FSSPEC config file path
+  copy:
+    dest: /etc/profile.d/fsspec.sh
+    content: export FSSPEC_CONFIG_DIR=/etc/fsspec
+
