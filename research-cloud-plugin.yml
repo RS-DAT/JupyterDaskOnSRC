@@ -73,3 +73,7 @@
       include_role:
         name: jupyter
       when: inventory_hostname == "jumphost"
+
+    - name: Set up configuration to access dCache
+      include_role:
+        name: dcache
