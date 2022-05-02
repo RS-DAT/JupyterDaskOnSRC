@@ -17,7 +17,9 @@ cull:
   timeout: '86400' # 1 day
   # The maximum age (in seconds) of servers that should be culled even if they are active.
   max_age: '604800' # 7 days
-jupyterhub_spawner_environment: {}
+jupyterhub_spawner_environment:
+  # Filesystem Spec configuration directory
+  FSSPEC_CONFIG_DIR: /etc/fsspec
 # Location where conda is installed
 conda_root: /opt/conda
 # Name of conda environment to use
