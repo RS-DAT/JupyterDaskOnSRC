@@ -28,18 +28,18 @@
     src: roles/conda/files/environment_default.yml
     dest: '{{ conda_root }}/environment.yml'
     mode: '0644' 
-    when: environment_url == 'default'
+  when: environment_url == 'default'
 - name: Copy default env file for merge with user file
   copy:
     src: roles/conda/files/environment_default.yml
     dest: '{{ conda_root }}/environment_default.yml'
     mode: '0644' 
-    when: environment_url != 'default'
+  when: environment_url != 'default'
 - name: Get conda user-defined environment file
   get_url:
     url: '{{ environment_url }}'
     dest: '{{ conda_root }}/environment_user.yml'
-    when: environment_url != 'default'
+  when: environment_url != 'default'
 - name: Merge conda environments
   command: '{{ conda_root }}/condabin/conda-merge {{ conda_root }}/environment_user.yml {{ conda_root }}/environment_default.yml > {{ conda_root }}/environment.yml'
   when: environment_url != 'default'
