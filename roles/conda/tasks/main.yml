@@ -41,7 +41,7 @@
     dest: '{{ conda_root }}/environment_user.yml'
   when: environment_url != 'default'
 - name: Merge conda environments
-  command: '{{ conda_root }}/condabin/conda-merge {{ conda_root }}/environment_user.yml {{ conda_root }}/environment_default.yml > {{ conda_root }}/environment.yml'
+  command: 'conda-merge {{ conda_root }}/environment_user.yml {{ conda_root }}/environment_default.yml > {{ conda_root }}/environment.yml'
   when: environment_url != 'default'
 - name: Install/update conda environment
   command: '{{ conda_root }}/condabin/mamba env update --name {{ conda_environment }} --file {{ conda_root }}/environment.yml'  # noqa no-changed-when
