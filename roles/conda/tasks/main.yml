@@ -20,7 +20,7 @@
     - conda.sh
     - mamba.sh
 - name: Install conda merge
-  command: '{{ conda_root }}/condabin/conda install -c conda-forge conda-merge'
+  command: '{{ conda_root }}/condabin/conda install -c conda-forge conda-merge --yes'
 - name: Disable loading base environment
   command: '{{ conda_root }}/condabin/conda config --set auto_activate_base False --system'
 - name: Set default env file as conda env
