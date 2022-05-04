@@ -20,7 +20,7 @@
     - conda.sh
     - mamba.sh
 - name: Install conda merge
-  command: '{{ conda_root }}/condabin/conda install -c conda-forge conda-merge --yes -p '
+  command: '{{ conda_root }}/condabin/conda install -c conda-forge conda-merge --yes'
 - name: Set default env file as conda env
   copy:
     src: roles/conda/files/environment_default.yml
