@@ -37,6 +37,7 @@
   get_url:
     url: '{{ environment_url }}'
     dest: '{{ conda_root }}/environment_user.yml'
+    mode: '0644' 
   when: environment_url != 'default'
 - name: Merge conda environments
   command: '{{ conda_root }}/bin/conda-merge {{ conda_root }}/environment_user.yml {{ conda_root }}/environment_default.yml > {{ conda_root }}/environment.yml'
