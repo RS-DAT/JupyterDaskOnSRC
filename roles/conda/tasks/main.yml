@@ -40,7 +40,11 @@
     mode: '0644' 
   when: environment_url != 'default'
 - name: Merge conda environments
-  command: '{{ conda_root }}/bin/conda-merge {{ conda_root }}/environment_user.yml {{ conda_root }}/environment_default.yml > {{ conda_root }}/environment.yml'
+  command: '{{ conda_root }}/bin/conda-merge {{ conda_root }}/environment_user.yml {{ conda_root }}/environment_default.yml'
+  register: merged_env
+  when: environment_url != 'default'
+- name: Write merged environment to file 
+  local_action: copy content={{ merged_env }} dest={{ conda_root }}/environment.yml
   when: environment_url != 'default'
 - name: Disable loading base environment
   command: '{{ conda_root }}/condabin/conda config --set auto_activate_base False --system'
