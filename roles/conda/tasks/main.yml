@@ -29,7 +29,7 @@
   when: environment_url == 'default'
 - name: Copy default env file for merge with user file
   copy:
-    src: roles/conda/files/environment_default.yml
+    src: environment_default.yml
     dest: '{{ conda_root }}/environment_default.yml'
     mode: '0644' 
   when: environment_url != 'default'
