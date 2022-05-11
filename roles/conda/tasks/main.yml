@@ -45,7 +45,7 @@
   when: environment_url != 'default'
 - name: Write merged environment to file 
   copy:
-    content: '{{ merged_env }}'
+    content: '{{ merged_env.stdout }}'
     dest: '{{ conda_root }}/environment.yml'
     mode: '0644'
   when: environment_url != 'default'
