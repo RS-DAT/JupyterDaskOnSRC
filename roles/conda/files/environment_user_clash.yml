@@ -1,0 +1,7 @@
+name: jupyter_dask
+channels:
+  - conda-forge
+dependencies:
+  - python=3.6
+  - yt
+  - pip
