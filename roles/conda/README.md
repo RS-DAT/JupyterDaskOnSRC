@@ -18,8 +18,8 @@ conda_installer_root: /opt
 conda_root: /opt/conda
 # Name of conda environment to use
 conda_environment: jupyterdask
-# URL to environment file
-environment_url: https://raw.githubusercontent.com/RS-DAT/JupyterDaskOnSRC/environment-from-link/environment.yml
+# URL to user-defined environment file (default value: default)
+environment_url: default
 ```
 
 Dependencies

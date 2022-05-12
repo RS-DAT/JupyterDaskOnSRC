@@ -19,12 +19,37 @@
   loop:
     - conda.sh
     - mamba.sh
+- name: Install conda merge
+  command: '{{ conda_root }}/condabin/mamba install conda-merge --yes'
+- name: Set default env file as conda env
+  copy:
+    src: environment_default.yml
+    dest: '{{ conda_root }}/environment.yml'
+    mode: '0644' 
+  when: environment_url == 'default'
+- name: Include user-defined environment
+  block:
+    - name: Copy default env file for merge with user file
+      copy:
+        src: environment_default.yml
+        dest: '{{ conda_root }}/environment_default.yml'
+        mode: '0644' 
+    - name: Get conda user-defined environment file
+      get_url:
+         url: '{{ environment_url }}'
+         dest: '{{ conda_root }}/environment_user.yml'
+         mode: '0644' 
+    - name: Merge conda environments
+      command: '{{ conda_root }}/bin/conda-merge {{ conda_root }}/environment_user.yml {{ conda_root }}/environment_default.yml'
+      register: merged_env
+    - name: Write merged environment to file 
+      copy:
+        content: '{{ merged_env.stdout }}'
+        dest: '{{ conda_root }}/environment.yml'
+        mode: '0644'
+  when: environment_url != 'default'
 - name: Disable loading base environment
   command: '{{ conda_root }}/condabin/conda config --set auto_activate_base False --system'
-- name: Get conda environment file
-  get_url:
-    url: '{{ environment_url }}'
-    dest: '{{ conda_root }}/environment.yml'
 - name: Install/update conda environment
   command: '{{ conda_root }}/condabin/mamba env update --name {{ conda_environment }} --file {{ conda_root }}/environment.yml'  # noqa no-changed-when
 - name: Activate conda environment during login for all posix_users
