@@ -27,27 +27,26 @@
     dest: '{{ conda_root }}/environment.yml'
     mode: '0644' 
   when: environment_url == 'default'
-- name: Copy default env file for merge with user file
-  copy:
-    src: environment_default.yml
-    dest: '{{ conda_root }}/environment_default.yml'
-    mode: '0644' 
-  when: environment_url != 'default'
-- name: Get conda user-defined environment file
-  get_url:
-    url: '{{ environment_url }}'
-    dest: '{{ conda_root }}/environment_user.yml'
-    mode: '0644' 
-  when: environment_url != 'default'
-- name: Merge conda environments
-  command: '{{ conda_root }}/bin/conda-merge {{ conda_root }}/environment_user.yml {{ conda_root }}/environment_default.yml'
-  register: merged_env
-  when: environment_url != 'default'
-- name: Write merged environment to file 
-  copy:
-    content: '{{ merged_env.stdout }}'
-    dest: '{{ conda_root }}/environment.yml'
-    mode: '0644'
+- name: Include user-defined environment
+  block:
+    - name: Copy default env file for merge with user file
+      copy:
+        src: environment_default.yml
+        dest: '{{ conda_root }}/environment_default.yml'
+        mode: '0644' 
+    - name: Get conda user-defined environment file
+      get_url:
+         url: '{{ environment_url }}'
+         dest: '{{ conda_root }}/environment_user.yml'
+         mode: '0644' 
+    - name: Merge conda environments
+      command: '{{ conda_root }}/bin/conda-merge {{ conda_root }}/environment_user.yml {{ conda_root }}/environment_default.yml'
+      register: merged_env
+    - name: Write merged environment to file 
+      copy:
+        content: '{{ merged_env.stdout }}'
+        dest: '{{ conda_root }}/environment.yml'
+        mode: '0644'
   when: environment_url != 'default'
 - name: Disable loading base environment
   command: '{{ conda_root }}/condabin/conda config --set auto_activate_base False --system'
