@@ -1,5 +1,0 @@
-name: jupyter_dask
-channels:
-  - conda-forge
-dependencies:
-  - yt
