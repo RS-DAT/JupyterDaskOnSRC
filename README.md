@@ -19,7 +19,7 @@ When setting up the **plugin**:
   * Set "Source type" as "git";
   * Paste the link to this repository as "Repository";
   * Set "Path" as `research-cloud-plugin.yml`;
-  * Set "Tag" to target "branch", if needed;
+  * Set "Tag" to target "branch" or "tag", if needed;
 * Add two "Plugin parameters":
   * Set "key" as `environment_url`, "Source type" as "Fixed", "Data type" as "string", and tick "Overwritable";
   * Set "key" as `worker_ip_addresses`, "Source type" as "Resource" and "Data type" as "string".
