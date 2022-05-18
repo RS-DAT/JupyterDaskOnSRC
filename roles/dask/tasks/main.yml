@@ -4,6 +4,11 @@
     path: /etc/dask
     state: directory
     mode: '0755'
+- name: Add tmp file
+  template:
+    src: tmp.txt.j2
+    dest: /etc/dask/tmp.txt
+    mode: '0644'
 - name: dask_config
   template:
     src: dask_config.yaml.j2
