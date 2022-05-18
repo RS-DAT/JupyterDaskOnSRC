@@ -19,13 +19,14 @@ conda_environment: jupyterdask
 # Path to conda environments bin directory
 conda_environment_bin: '{{ conda_root }}/envs/{{ conda_environment }}/bin'
 # Port on which dask scheduler is running
-dask_scheduler_port: 3389
+dask_scheduler_port: 8786
 # Port on which dask dashboard is running
 dask_dashboard_port: 8787
-# Port on which dask workers are running
-dask_worker_port: 5986
 # Workers' scratch directory
 dask_worker_dir: "/scratch"
+dask_worker_environment:
+  # Filesystem Spec configuration directory
+  FSSPEC_CONFIG_DIR: /etc/fsspec
 ```
 
 Dependencies
