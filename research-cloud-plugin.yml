@@ -65,6 +65,10 @@
       include_role:
         name: conda
 
+    - name: Set up configuration to access dCache
+      include_role:
+        name: dcache
+
     - name: Set up Dask cluster
       include_role:
         name: dask
@@ -73,7 +77,3 @@
       include_role:
         name: jupyter
       when: inventory_hostname == "jumphost"
-
-    - name: Set up configuration to access dCache
-      include_role:
-        name: dcache

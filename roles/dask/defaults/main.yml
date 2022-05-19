@@ -11,3 +11,6 @@ dask_scheduler_port: 8786
 dask_dashboard_port: 8787
 # Workers' scratch directory
 dask_worker_dir: "/scratch"
+dask_worker_environment:
+  # Filesystem Spec configuration directory
+  FSSPEC_CONFIG_DIR: /etc/fsspec
