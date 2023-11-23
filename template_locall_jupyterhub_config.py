@@ -9,7 +9,6 @@ c = get_config()
 
 # The docker instances need access to the Hub, so the default loopback port doesn't work:
 from jupyter_client.localinterfaces import public_ips
-
 c.JupyterHub.hub_ip = public_ips()[0]
 
 c.JupyterHub.admin_access = True
@@ -22,7 +21,12 @@ c.JupyterHub.bind_url = 'https://127.0.0.1:8000'
 c.JupyterHub.spawner_class = 'dockerspawner.DockerSpawner'
 
 # replace with your desired image see https://github.com/jupyter/docker-stacks/tree/main/images
-c.DockerSpawner.image = 'quay.io/jupyter/scipy-notebook:2023-10-23'
+# and see https://quay.io/organization/pangeo
+c.DockerSpawner.image = 'quay.io/pangeo/base-notebook:latest'
+
+# set c.Spawner.cmd to launch singleuser server with jupyterlab
+# this is needed if pangeo image is used
+c.Spawner.cmd = ['jupyter-labhub']
 
 # Explicitly set notebook directory because we'll be mounting a volume to it.
 # Most `jupyter/docker-stacks` *-notebook images run the Notebook server as
@@ -36,7 +40,7 @@ notebook_mount_dir = '/home/sarah/work'  # replace with your desired mount point
 c.DockerSpawner.volumes = {notebook_mount_dir: {"bind": c.DockerSpawner.notebook_dir , "mode": "rw"}}
 
 c.Spawner.default_url = '/lab'
-c.Spawner.notebook_dir = '~'
+# c.Spawner.notebook_dir = '~'
 c.JupyterHub.port = 8000
 # c.DockerSpawner.start_timeout = 120
 # c.Spawner.http_timeout = 60
