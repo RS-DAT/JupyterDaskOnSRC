@@ -1,7 +1,11 @@
 
+# This is a template for running jupyetrhub with DockerSpawner "locally" on your own machine
 # See https://jupyterhub-dockerspawner.readthedocs.io/en/latest/index.html
-# docker should be installed on the host machine
-# in the .docker/config.json file, se the "credsStore": to "" (empty string)
+# 1. docker should be installed on your machine
+    # in the .docker/config.json file, se the "credsStore": to "" (empty string)
+# 2. install packages perhaps in a conda environment see https://jupyterhub-dockerspawner.readthedocs.io/en/latest/install.html
+# 3. The docker instances need access to the Hub, install "jupyter_client" too
+# 4. run jupyterhub -f template_locall_jupyterhub_config.py
 
 import sys
 
@@ -12,9 +16,6 @@ from jupyter_client.localinterfaces import public_ips
 c.JupyterHub.hub_ip = public_ips()[0]
 
 c.JupyterHub.admin_access = True
-c.Authenticator.admin_users = {'sarah'} # replace with your username
-c.JupyterHub.authenticator_class = 'jupyterhub.auth.PAMAuthenticator'
-c.Authenticator.allowed_users = {'sarah'} # replace with your username
 
 c.JupyterHub.bind_url = 'https://127.0.0.1:8000'
 
@@ -36,15 +37,14 @@ c.DockerSpawner.notebook_dir = '/home/jovyan/work'
 
 # Mount the real user's Docker volume on the host to the notebook user's
 # notebook directory in the container
-notebook_mount_dir = '/home/sarah/work'  # replace with your desired mount point
-c.DockerSpawner.volumes = {notebook_mount_dir: {"bind": c.DockerSpawner.notebook_dir , "mode": "rw"}}
+notebook_mount_dir = '/home/sarah/GitHub'  # replace with your desired mount point
+# default mode is  "mode": "rw"
+c.DockerSpawner.volumes = {notebook_mount_dir: {"bind": c.DockerSpawner.notebook_dir}}
 
 c.Spawner.default_url = '/lab'
-# c.Spawner.notebook_dir = '~'
 c.JupyterHub.port = 8000
-# c.DockerSpawner.start_timeout = 120
-# c.Spawner.http_timeout = 60
 
+# TODO check how to pause the container
 c.DockerSpawner.remove_containers = True
 c.Authenticator.delete_invalid_users = True
 
@@ -59,5 +59,3 @@ c.DockerSpawner.debug = True
 
 # Set the logging level (DEBUG, INFO, WARNING, ERROR, CRITICAL)
 c.Application.log_level = 'DEBUG'
-
-# TODO check how to remove cached containers
