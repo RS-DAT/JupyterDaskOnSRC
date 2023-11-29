@@ -23,6 +23,18 @@ c.JupyterHub.admin_access = True
 
 c.JupyterHub.bind_url = 'https://127.0.0.1:8000'
 
+c.Spawner.default_url = '/lab?reset'
+c.JupyterHub.port = 8000
+
+# Delete any users from the database that do not pass validation
+c.Authenticator.delete_invalid_users = True
+
+c.JupyterHub.cleanup_servers = True
+c.JupyterHub.cleanup_proxy = True
+
+# Set the logging level (DEBUG, INFO, WARNING, ERROR, CRITICAL)
+c.Application.log_level = 'DEBUG'
+
 c.JupyterHub.spawner_class = 'dockerspawner.DockerSpawner'
 
 # replace with your desired image see https://github.com/jupyter/docker-stacks/tree/main/images
@@ -46,21 +58,14 @@ c.DockerSpawner.notebook_dir = '/home/jovyan/work'
 notebook_mount_dir = '/home/falidoost/scratch'  # replace with your username
 c.DockerSpawner.volumes = {notebook_mount_dir: {"bind": c.DockerSpawner.notebook_dir}}
 
-c.Spawner.default_url = '/lab?reset'
-c.JupyterHub.port = 8000
-
-# TODO how to pause the container when the user is not active?
-c.DockerSpawner.remove_containers = True
-c.Authenticator.delete_invalid_users = True
-
-c.JupyterHub.cleanup_servers = True
-c.JupyterHub.cleanup_proxy = True
-
-# Remove containers once they are stopped
-c.DockerSpawner.remove = True
+# delete containers when servers are stopped. This will destroy any data in the
+# container not stored in mounted volumes. Default is False, that means when the
+# server is stopped by the user, the container status is Exited(0) i.e. stopped.
+# In this case, the container is not deleted, but it is not running too. If the
+# user starts the server again, the same container is re-started and therefore
+# data and packages installed are preserved. If the user closes the browser
+# without stopping the server, the container will continute running.
+# c.DockerSpawner.remove = True
 
 # For debugging arguments passed to spawned containers
 c.DockerSpawner.debug = True
-
-# Set the logging level (DEBUG, INFO, WARNING, ERROR, CRITICAL)
-c.Application.log_level = 'DEBUG'
