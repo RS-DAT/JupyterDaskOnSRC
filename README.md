@@ -27,8 +27,8 @@ instructions, using the following parameters:
   * Set "Script availability" as "Script is publicly available through Git". 
 * Add three "Component parameters":
   * Set "Parameter key" as `environment_url`, "Source type" as "Fixed", and tick "Overwritable";
-  * Set "key" as `dcache_token`, "Source type" as "Fixed", and tick "Overwritable";
-  * Set "key" as `worker_ip_addresses`, "Source type" as "Resource".
+  * Set "Parameter key" as `dcache_token`, "Source type" as "Fixed", and tick "Overwritable";
+  * Set "Parameter key" as `worker_ip_addresses`, "Source type" as "Resource".
 
 ### Create the Catalog Item
 
