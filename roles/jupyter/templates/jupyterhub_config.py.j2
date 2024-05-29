@@ -18,6 +18,7 @@ c.JupyterHub.services = [
 c.Authenticator.admin_users = set([ {% for user in jupyterhub_admins %}
      '{{ user.name }}'{% if not loop.last %},{% endif %}
  {% endfor %} ])
+c.Authenticator.allow_all = True
 
 c.JupyterHub.spawner_class = 'systemdspawner.SystemdSpawner'
 c.SystemdSpawner.default_shell = '/bin/bash'
