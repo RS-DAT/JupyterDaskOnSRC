@@ -2,9 +2,10 @@ name: jupyter_dask
 channels:
   - conda-forge
 dependencies:
-  - python=3.9
   - asyncssh
+  - bokeh<3  # issues with the Dask dashboard
   - click==8.0.2  # temporary fix until https://github.com/dask/distributed/issues/6013 is released
+  - fsspec==2023.12.2  # fix until https://github.com/NLeSC-GO-common-infrastructure/dcachefs/issues/19
   - dask[complete]
   - python-graphviz
   - jupyterhub
