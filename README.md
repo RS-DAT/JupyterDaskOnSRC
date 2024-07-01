@@ -8,11 +8,11 @@ This is an instruction about how to set up a Jupyter interface including
 
 ### Access the existing workspace
 
-For users trying to access the existing workspace, first ask administrators to
-invite you. After receiving the invitation link, you will be directed to the
-[log in page](https://portal.live.surfresearchcloud.nl/). Follow the instructions
-in
-[Log+in+to+your+workspace](https://servicedesk.surf.nl/wiki/display/WIKI/Log+in+to+your+workspace)
+To access the existing workspace, first ask administrators to invite you. After
+receiving the invitation link, you will be directed to the [log in
+page](https://portal.live.surfresearchcloud.nl/). Follow the instructions in
+[Log in to your
+workspace](https://servicedesk.surf.nl/wiki/display/WIKI/Log+in+to+your+workspace)
 to access your workspace.
 
 ### Create a new workspace
@@ -41,7 +41,7 @@ three parameters:
   starage](http://doc.grid.surfsara.nl/en/latest/Pages/Advanced/storage_clients/webdav.html#sharing-data-with-macaroons)
   via [dCacheFS](https://github.com/NLeSC-GO-common-infrastructure/dcachefs).
 
-### 1. Create the Component
+### 1. Create the component
 
 Follow the ["Create a
 component"](https://servicedesk.surf.nl/wiki/display/WIKI/Create+a+component)
@@ -58,7 +58,7 @@ instructions, using the following parameters:
   * Set "Parameter key" as `dcache_token`, "Source type" as "Fixed", and tick "Overwritable";
   * Set "Parameter key" as `worker_ip_addresses`, "Source type" as "Resource".
 
-### 2. Create the Catalog Item
+### 2. Create the catalog item
 
 Follow the ["Create a catalog
 item"](https://servicedesk.surf.nl/wiki/display/WIKI/Create+a+catalog+item)
@@ -87,7 +87,7 @@ instructions, using the following parameters:
     to a custom environment.yml (blank for default environment)", and set
     "Default parameter value" to `default`.
 
-### 3. Create the Workspace
+### 3. Create the workspace
 
 To create a workspace, you need to first create a storage, see [External storage
 volumes](https://servicedesk.surf.nl/wiki/display/WIKI/External+storage+volumes).
@@ -108,7 +108,7 @@ Administrators can invite users to access the created workspace on SRC via the
 administrator, you can send invitations to users following [Invite colleagues to
 a CO](https://servicedesk.surf.nl/wiki/display/WIKI/Invite+colleagues+to+a+CO).
 
-## Acknowledgements
+## Acknowledgments
 
 Most of the playbooks in this repository have been taken, inspired or adapted
 from the ones in the [eWaterCycle
