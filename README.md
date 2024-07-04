@@ -31,8 +31,9 @@ Steps](https://servicedesk.surf.nl/wiki/display/WIKI/First+Steps).
 
 A member of the CO [with "developer"
 privileges](https://servicedesk.surfsara.nl/wiki/display/WIKI/Appoint+a+CO-member+a+developer)
-can register the current application as a `Catalog Item` and setting up these
-three parameters:
+can register the current application as a `Catalog Item` (steps 1. and 2. below). Once created, the catalog item will allow him/her as well as other members of the 
+CO to create and access a workspace with JupyterHub and Dask (step 3. below). When creating a workspace, users will be
+able to set three parameters:
 
 * the number of worker nodes in the cluster of VMs;
 * (optional) the URL to a conda environment file, employed to configure both the
