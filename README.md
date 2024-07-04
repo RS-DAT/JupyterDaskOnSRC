@@ -11,8 +11,8 @@ This is an instruction about how to set up a Jupyter interface including
 To access the existing workspace, first ask administrators to invite you. After
 receiving the invitation link, you will be directed to the [log in
 page](https://portal.live.surfresearchcloud.nl/). Follow the instructions in
-[Log in to your
-workspace](https://servicedesk.surf.nl/wiki/display/WIKI/Log+in+to+your+workspace)
+[Workspace Access with TOTP](https://servicedesk.surf.nl/wiki/display/WIKI/Log+in+to+your+workspace#Logintoyourworkspace-WorkspaceAccesswithTOTP)
+to setup a time-based one time password and 
 to access your workspace.
 
 ### Create a new workspace
