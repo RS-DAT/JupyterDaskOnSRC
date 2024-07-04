@@ -8,7 +8,7 @@ This is an instruction about how to set up a Jupyter interface including
 
 ### Access the existing workspace
 
-To access the existing workspace, first ask administrators to invite you. After
+To access an existing workspace, first ask administrators to invite you to a collaborative organization (CO). After
 receiving the invitation link, you will be directed to the [log in
 page](https://portal.live.surfresearchcloud.nl/). Follow the instructions in
 [Workspace Access with TOTP](https://servicedesk.surf.nl/wiki/display/WIKI/Log+in+to+your+workspace#Logintoyourworkspace-WorkspaceAccesswithTOTP)
