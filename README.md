@@ -17,7 +17,7 @@ to access your workspace.
 
 ### Create a new workspace
 
-See the instructions [For the administrator](#for-the-administrator) to create a
+See the instructions ["Create the workspace"](#3-create-the-workspace) below to create a
 new workspace.
 
 ## For the administrator
