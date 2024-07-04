@@ -90,12 +90,11 @@ instructions, using the following parameters:
 
 ### 3. Create the workspace
 
-To create a workspace, you need to first create a storage, see [External storage
-volumes](https://servicedesk.surf.nl/wiki/display/WIKI/External+storage+volumes).
-Then, you can create a new workspace by following [Start a simple
-workspace](https://servicedesk.surf.nl/wiki/display/WIKI/Start+a+simple+workspace)
-and attach your storage to it. For the application, select the catalog item
-created in the previous steps.
+You can create a new workspace by following [Start a simple
+workspace](https://servicedesk.surf.nl/wiki/display/WIKI/Start+a+simple+workspace). 
+For the application, select the catalog item
+created in the previous steps. Follow the instructions and select parameters/provide input 
+when requested.
 
 > Note: There are multiple pre-defiend set of virtual machines/working
 > environments (which are called
